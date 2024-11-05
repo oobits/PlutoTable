@@ -1,0 +1,21 @@
+* PlutoTable
+
+Ag-grid based table viewer for Pluto. Contributions welcome.
+
+** Usage:
+#+begin_src julia
+  ##
+  using PlutoTable
+
+  ## Make DataFrames display using PlutoTable by default
+  PlutoTable.register(DataFrames.AbstractDataFrame)
+
+  ## Alternatively (can be used independently/in parallel with previous mode)
+  showtable(table;
+                     page_size=1000,
+                     size_threshold=1000_000,
+                     height="40vh", formatters=(),
+                     default_formatter=default_formatter,
+                     server_sort_threshold=10_000_000,
+                     render_html=false)
+#+end_src
