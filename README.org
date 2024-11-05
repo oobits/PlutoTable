@@ -4,18 +4,26 @@ Ag-grid based table viewer for Pluto. Contributions welcome.
 
 ** Usage:
 #+begin_src julia
-  ##
-  using PlutoTable
+     ##
+     using PlutoTable
 
-  ## Make DataFrames display using PlutoTable by default
-  PlutoTable.register(DataFrames.AbstractDataFrame)
+     ## Make DataFrames display using PlutoTable by default
+     PlutoTable.register(DataFrames.AbstractDataFrame)
 
-  ## Alternatively (can be used independently/in parallel with previous mode)
-  showtable(table;
-                     page_size=1000,
-                     size_threshold=1000_000,
-                     height="40vh", formatters=(),
-                     default_formatter=default_formatter,
-                     server_sort_threshold=10_000_000,
-                     render_html=false)
+     ## Alternatively (can be used independently/in parallel with previous mode)
+     showtable(table; ## Any Tables.jl compatible table
+                        page_size=1000, ## Pagination threshold/size. Can be set to 0 to disable
+                        size_threshold=1000_000, ## Max rows for full "clientside" mode.
+                        height="40vh", ## Any CSS acceptible height, although some are funky.
+                        formatters=(), ## ~pairs~-able object with ~name:>String=>eltype(table[name])->string~ pairs, where the return value of the callable is what is shown in the table.
+                        default_formatter=default_formatter, ## Default formatter function of the signature above, replacing missing values with empty strings and values that can't be sent directly to js by their julia string representation.
+                        server_sort_threshold=10_000_000, ## Size threshold beyond which server sorting by columns is disabled (to avoid accidentally freezing pluto for a long op).
+                        render_html=false ## Render html in formatted strings (otherwise shown verbatim). Has a performance cost so is disabled by default.
+               )
 #+end_src
+** todo
+- Server side filtering. Was deemed less critical for as filtering can be done interactively in pluto itself.
+- Remove dependency on CDN
+
+
+Contributions welcome!

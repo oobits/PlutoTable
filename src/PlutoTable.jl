@@ -49,7 +49,7 @@ function showtable(table;
     rows=eachrow(page)
     items=map(rows) do row
       map(zip(names,format_l,row)) do (k,f,v)
-        k=>f(v)#default_formatter(v)
+        k=>f(v)
       end |> Dict
     end
     data=(items,last=table_rows)
