@@ -3,7 +3,6 @@ using Tables
 using HypertextLiteral: @htl, @htl_str
 import AbstractPlutoDingetjes.Display: with_js_link
 using Dates
-using Pluto.PlutoRunner
 
 export showtable
 
